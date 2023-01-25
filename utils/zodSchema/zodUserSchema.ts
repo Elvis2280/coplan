@@ -13,4 +13,15 @@ const createUserSchema = z.object({
   }),
 });
 
-export { createUserSchema };
+const loginUserSchema = z.object({
+  body: z.object({
+    email: z
+      .string({ required_error: 'El campo email es requerido!' })
+      .email('El dato no es un correo valido'),
+    password: z
+      .string({ required_error: 'El campo contraseña es requerido!' })
+      .min(8, 'La contraseña debe tener al menos 8 caracteres'),
+  }),
+});
+
+export { createUserSchema, loginUserSchema };
