@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
 import { globalStyle } from '../../../styles/global';
 import { SvgUri } from 'react-native-svg';
 import Button from '../../components/Button/Button';
-import SpaceY from '../../components/SpaceY/SpaceY';
+import Divider from '../../components/SpaceY/Divider';
 import colors from '../../../styles/colors';
-import CircleDecoration from './CircleDecoration';
+import CircleDecoration from './components/CircleDecoration';
 import Container from '../../components/Container/Container';
 
 type Props = {
@@ -15,6 +15,7 @@ type Props = {
 export default function Index({ navigation }: Props) {
   return (
     <Container>
+      <StatusBar barStyle={'dark-content'} />
       <View style={{ ...globalStyle.container }}>
         <View style={style.decorationTop}>
           <CircleDecoration />
@@ -37,11 +38,14 @@ export default function Index({ navigation }: Props) {
           <Button handler={() => navigation.navigate('Login')}>
             Iniciar sesión
           </Button>
-          <SpaceY height={12} />
-          <Button handler={() => {}} secondary={true}>
+          <Divider height={12} />
+          <Button
+            handler={() => navigation.navigate('Signup')}
+            secondary={true}
+          >
             Crear Cuenta
           </Button>
-          <SpaceY height={12} />
+          <Divider height={12} />
           <Button handler={() => {}} inline={true}>
             ¿Olvidaste tu contraseña?
           </Button>
