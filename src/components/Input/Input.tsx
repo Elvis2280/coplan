@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
+import { FieldValues, useController } from 'react-hook-form';
 import { StyleSheet, TextInput } from 'react-native';
 import colors from '../../../styles/colors';
 
-type Props = {};
+type Props = {
+  control: FieldValues | any;
+  name: string;
+};
 
-export default function Input({}: Props) {
+export default function Input({ name, control }: Props) {
+  const { field } = useController({
+    control,
+    defaultValue: '',
+    name,
+  });
   return (
     <TextInput
+      value={field.value}
+      onChange={field.onChange}
       style={{
         ...style.input,
       }}

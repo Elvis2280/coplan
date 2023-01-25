@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SvgUri } from 'react-native-svg';
@@ -15,6 +16,7 @@ type Props = {
 
 export default function Index({ navigation }: Props) {
   const insets = useSafeAreaInsets();
+  const { control, handleSubmit } = useForm();
   return (
     <Container topSpace={false}>
       <View style={{ ...style.topCircle, paddingTop: insets.top }}>
@@ -37,13 +39,13 @@ export default function Index({ navigation }: Props) {
           <View>
             <Text style={style.label}>Correo electronico</Text>
             <Divider height={10} />
-            <Input />
+            <Input control={control} name="email" />
           </View>
           <Divider height={20} />
           <View>
             <Text style={style.label}>Contraseña</Text>
             <Divider height={10} />
-            <Input />
+            <Input control={control} name="password" />
           </View>
           <Divider height={8} />
           <Button inline handler={() => {}}>
@@ -66,7 +68,7 @@ export default function Index({ navigation }: Props) {
 const style = StyleSheet.create({
   topCircle: {
     width: '100%',
-    height: 300,
+    height: 330,
     backgroundColor: colors.main500,
     borderBottomRightRadius: 1000,
     borderBottomLeftRadius: 1000,
@@ -75,7 +77,7 @@ const style = StyleSheet.create({
   imageDecorationTop: {
     position: 'absolute',
     width: '100%',
-    bottom: 10,
+    bottom: 40,
     left: 0,
     flexDirection: 'row',
     justifyContent: 'center',
