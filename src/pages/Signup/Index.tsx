@@ -1,6 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SvgUri } from 'react-native-svg';
 import colors from '../../../styles/colors';
@@ -9,14 +16,28 @@ import Button from '../../components/Button/Button';
 import Container from '../../components/Container/Container';
 import Input from '../../components/Input/Input';
 import Divider from '../../components/SpaceY/Divider';
+import useCreateAccount from './hooks/useCreateAccount';
 
 type Props = {
   navigation: any;
 };
 
+type fieldSchema = {
+  nombre: string;
+  apellido: string;
+  email: string;
+  password: string;
+};
+
 export default function Index({ navigation }: Props) {
   const insets = useSafeAreaInsets();
+  const { createUser } = useCreateAccount();
   const { control, handleSubmit } = useForm();
+  console.log('Loading', createUser.isLoading);
+  console.log('success', createUser.isSuccess);
+  console.log('data', createUser.data);
+  console.log('error', createUser.error);
+  console.log('es error', createUser.isError);
   return (
     <ScrollView>
       <Container topSpace={false}>
@@ -75,10 +96,18 @@ export default function Index({ navigation }: Props) {
           </View>
           <Divider height={16} />
           <View style={{ marginTop: 'auto' }}>
-            <Button handler={() => {}}>Iniciar sesión</Button>
+            <Button
+              handler={handleSubmit((data: any) => createUser.mutate(data))}
+            >
+              {createUser.isLoading ? (
+                <ActivityIndicator size={'small'} color={colors.white} />
+              ) : (
+                'Crear cuenta'
+              )}
+            </Button>
             <Divider height={8} />
             <Button inline handler={() => {}}>
-              ¿No tienes una cuenta?
+              ¿Ya tienes una cuenta?
             </Button>
           </View>
         </View>

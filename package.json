@@ -13,6 +13,8 @@
     "@expo-google-fonts/lato": "^0.2.2",
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/native-stack": "^6.9.7",
+    "@tanstack/react-query": "^4.23.0",
+    "axios": "^1.2.4",
     "babel-plugin-react-native-classname-to-style": "^1.2.2",
     "babel-plugin-react-native-platform-specific-extensions": "^1.1.1",
     "expo": "~47.0.9",
@@ -26,6 +28,7 @@
     "react-native-sass-transformer": "^2.0.0",
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
+    "react-native-toast-notifications": "^3.3.1",
     "react-native-web": "~0.18.9",
     "sass": "^1.57.1",
     "zod": "^3.20.2"

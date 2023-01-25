@@ -12,9 +12,12 @@ import Signup from './src/pages/Signup/Index';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ToastProvider } from 'react-native-toast-notifications';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
+  const queryClient = new QueryClient();
   let [fontsLoaded] = useFonts({
     Lato_300Light,
     Lato_400Regular,
@@ -31,20 +34,20 @@ export default function App() {
   }
 
   return (
-    // <SafeAreaView style={{ flex: 1, backgroundColor: 'red' }}>
-    // <StatusBar />
-
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Group>
-            <Stack.Screen name="Initial" component={Home} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Signup" component={Signup} />
-          </Stack.Group>
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
-    // </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <ToastProvider offsetTop={50}>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              <Stack.Group>
+                <Stack.Screen name="Initial" component={Home} />
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Signup" component={Signup} />
+              </Stack.Group>
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </ToastProvider>
+    </QueryClientProvider>
   );
 }
