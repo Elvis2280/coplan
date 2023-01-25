@@ -16,4 +16,14 @@ export const globalStyle = StyleSheet.create({
     fontSize: 18,
     color: colors.main900,
   },
+  buttonText: {
+    color: colors.white,
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  buttonInlineText: {
+    color: colors.main200,
+    fontSize: 18,
+    textAlign: 'center',
+  },
 });

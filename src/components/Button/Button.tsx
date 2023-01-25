@@ -31,7 +31,7 @@ export default function Button({
   }
   return (
     <TouchableOpacity onPress={handler} style={styles.button}>
-      {<Text style={styles.buttonText}>{children}</Text>}
+      {children}
     </TouchableOpacity>
   );
 }

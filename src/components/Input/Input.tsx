@@ -4,20 +4,18 @@ import { StyleSheet, TextInput } from 'react-native';
 import colors from '../../../styles/colors';
 
 type Props = {
-  control: FieldValues | any;
-  name: string;
+  onChange: () => void;
+  value: string;
+  onBlur?: () => void;
 };
 
-export default function Input({ name, control }: Props) {
-  const { field } = useController({
-    control,
-    defaultValue: '',
-    name,
-  });
+export default function Input({ onBlur, onChange, value }: Props) {
+  console.log(value);
   return (
     <TextInput
-      value={field.value}
-      onChange={field.onChange}
+      value={value}
+      onChangeText={onChange}
+      onBlur={onBlur}
       style={{
         ...style.input,
       }}

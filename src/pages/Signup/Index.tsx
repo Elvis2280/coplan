@@ -1,5 +1,6 @@
+import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import {
   ActivityIndicator,
   ScrollView,
@@ -17,22 +18,28 @@ import Container from '../../components/Container/Container';
 import Input from '../../components/Input/Input';
 import Divider from '../../components/SpaceY/Divider';
 import useCreateAccount from './hooks/useCreateAccount';
-
+import { zodResolver } from '@hookform/resolvers/zod';
+import createAccountSchema from './zodSchema';
 type Props = {
   navigation: any;
-};
-
-type fieldSchema = {
-  nombre: string;
-  apellido: string;
-  email: string;
-  password: string;
 };
 
 export default function Index({ navigation }: Props) {
   const insets = useSafeAreaInsets();
   const { createUser } = useCreateAccount();
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(createAccountSchema),
+    defaultValues: {
+      nombre: '',
+      apellido: '',
+      email: '',
+      password: '',
+    },
+  });
   console.log('Loading', createUser.isLoading);
   console.log('success', createUser.isSuccess);
   console.log('data', createUser.data);
@@ -67,31 +74,75 @@ export default function Index({ navigation }: Props) {
               <View style={{ flex: 1 }}>
                 <Text style={globalStyle.label}>Nombre</Text>
                 <Divider height={10} />
-                <Input control={control} name="nombre" />
+                <Controller
+                  control={control}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input onChange={onChange} onBlur={onBlur} value={value} />
+                  )}
+                  name="nombre"
+                  rules={{
+                    required: true,
+                  }}
+                />
+                <Text style={style.error}>
+                  <ErrorMessage errors={errors} name="nombre" />
+                </Text>
               </View>
               <Divider width={20} />
               <View style={{ flex: 1 }}>
                 <Text style={globalStyle.label}>Apellido</Text>
                 <Divider height={10} />
-                <Input control={control} name="apellido" />
+                <Controller
+                  control={control}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input onChange={onChange} onBlur={onBlur} value={value} />
+                  )}
+                  name="apellido"
+                  rules={{ required: true }}
+                />
+                <Text style={style.error}>
+                  <ErrorMessage errors={errors} name="apellido" />
+                </Text>
               </View>
             </View>
             <Divider height={20} />
             <View>
               <Text style={globalStyle.label}>Correo electronico</Text>
               <Divider height={10} />
-              <Input control={control} name="email" />
+              <Controller
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input onChange={onChange} onBlur={onBlur} value={value} />
+                )}
+                name="email"
+                rules={{ required: true }}
+              />
+              <Text style={style.error}>
+                <ErrorMessage errors={errors} name="email" />
+              </Text>
             </View>
 
             <Divider height={20} />
             <View>
               <Text style={globalStyle.label}>Contraseña</Text>
               <Divider height={10} />
-              <Input control={control} name="password" />
+              <Controller
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input onChange={onChange} onBlur={onBlur} value={value} />
+                )}
+                name="password"
+                rules={{ required: true }}
+              />
+              <Text style={style.error}>
+                <ErrorMessage errors={errors} name="password" />
+              </Text>
             </View>
             <Divider height={8} />
             <Button inline handler={() => {}}>
-              ¿Olvidaste tu contraseña?
+              <Text style={globalStyle.buttonInlineText}>
+                ¿Olvidaste tu contraseña?
+              </Text>
             </Button>
           </View>
           <Divider height={16} />
@@ -100,14 +151,23 @@ export default function Index({ navigation }: Props) {
               handler={handleSubmit((data: any) => createUser.mutate(data))}
             >
               {createUser.isLoading ? (
-                <ActivityIndicator size={'small'} color={colors.white} />
+                <View
+                  style={{
+                    width: '100%',
+                    alignItems: 'center',
+                  }}
+                >
+                  <ActivityIndicator size={'small'} color={colors.white} />
+                </View>
               ) : (
-                'Crear cuenta'
+                <Text style={globalStyle.buttonText}>Crear cuenta</Text>
               )}
             </Button>
             <Divider height={8} />
             <Button inline handler={() => {}}>
-              ¿Ya tienes una cuenta?
+              <Text style={globalStyle.buttonInlineText}>
+                ¿Ya tienes una cuenta?
+              </Text>
             </Button>
           </View>
         </View>
@@ -140,5 +200,8 @@ const style = StyleSheet.create({
     color: colors.main600,
     marginBottom: 20,
     textAlign: 'center',
+  },
+  error: {
+    color: 'red',
   },
 });

@@ -16,14 +16,19 @@ export default function useCreateAccount() {
   const createUser = useMutation({
     mutationFn: ({ nombre, apellido, email, password }: userData) => {
       return axiosDbIntance.post('/user', {
-        nombre,
+        nombre: nombre.toLowerCase(),
         apellido,
         email,
         password,
       });
     },
-    onError: (error: any, variable, c) =>
-      toastError(error?.response?.data?.issues[0]?.message),
+    onError: (error: any, variable, c) => {
+      if (error?.response?.data?.message) {
+        toastError(error?.response?.data?.message);
+        return;
+      }
+      toastError(error?.response?.data?.issues[0]?.message);
+    },
   });
 
   return { createUser };

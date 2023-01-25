@@ -36,14 +36,14 @@ export default function Index({ navigation }: Props) {
         </View>
         <View style={style.buttonsContainer}>
           <Button handler={() => navigation.navigate('Login')}>
-            Iniciar sesión
+            <Text style={globalStyle.buttonText}>Iniciar sesión</Text>
           </Button>
           <Divider height={12} />
           <Button
             handler={() => navigation.navigate('Signup')}
             secondary={true}
           >
-            Crear Cuenta
+            <Text style={globalStyle.buttonText}>Crear Cuenta</Text>
           </Button>
           <Divider height={12} />
         </View>
