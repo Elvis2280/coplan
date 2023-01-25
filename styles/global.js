@@ -12,4 +12,8 @@ export const globalStyle = StyleSheet.create({
     fontSize: 28,
     textAlign: 'center',
   },
+  label: {
+    fontSize: 18,
+    color: colors.main900,
+  },
 });

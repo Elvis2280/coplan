@@ -46,9 +46,6 @@ export default function Index({ navigation }: Props) {
             Crear Cuenta
           </Button>
           <Divider height={12} />
-          <Button handler={() => {}} inline={true}>
-            ¿Olvidaste tu contraseña?
-          </Button>
         </View>
       </View>
     </Container>
