@@ -26,4 +26,7 @@ export const globalStyle = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
+  errorText: {
+    color: 'red',
+  },
 });

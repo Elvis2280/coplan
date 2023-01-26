@@ -12,7 +12,7 @@ type userData = {
 };
 
 export default function useCreateAccount() {
-  const { toastError } = useCustomToast();
+  const { toastError, toastSucess } = useCustomToast();
   const createUser = useMutation({
     mutationFn: ({ nombre, apellido, email, password }: userData) => {
       return axiosDbIntance.post('/user', {
@@ -22,12 +22,15 @@ export default function useCreateAccount() {
         password,
       });
     },
-    onError: (error: any, variable, c) => {
+    onError: (error: any) => {
       if (error?.response?.data?.message) {
         toastError(error?.response?.data?.message);
         return;
       }
       toastError(error?.response?.data?.issues[0]?.message);
+    },
+    onSuccess: () => {
+      toastSucess('Cuenta creada!');
     },
   });
 

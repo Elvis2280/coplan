@@ -40,11 +40,7 @@ export default function Index({ navigation }: Props) {
       password: '',
     },
   });
-  console.log('Loading', createUser.isLoading);
-  console.log('success', createUser.isSuccess);
-  console.log('data', createUser.data);
-  console.log('error', createUser.error);
-  console.log('es error', createUser.isError);
+
   return (
     <ScrollView>
       <Container topSpace={false}>
@@ -84,7 +80,7 @@ export default function Index({ navigation }: Props) {
                     required: true,
                   }}
                 />
-                <Text style={style.error}>
+                <Text style={globalStyle.errorText}>
                   <ErrorMessage errors={errors} name="nombre" />
                 </Text>
               </View>
@@ -100,7 +96,7 @@ export default function Index({ navigation }: Props) {
                   name="apellido"
                   rules={{ required: true }}
                 />
-                <Text style={style.error}>
+                <Text style={globalStyle.errorText}>
                   <ErrorMessage errors={errors} name="apellido" />
                 </Text>
               </View>
@@ -117,7 +113,7 @@ export default function Index({ navigation }: Props) {
                 name="email"
                 rules={{ required: true }}
               />
-              <Text style={style.error}>
+              <Text style={globalStyle.errorText}>
                 <ErrorMessage errors={errors} name="email" />
               </Text>
             </View>
@@ -134,7 +130,7 @@ export default function Index({ navigation }: Props) {
                 name="password"
                 rules={{ required: true }}
               />
-              <Text style={style.error}>
+              <Text style={globalStyle.errorText}>
                 <ErrorMessage errors={errors} name="password" />
               </Text>
             </View>
@@ -200,8 +196,5 @@ const style = StyleSheet.create({
     color: colors.main600,
     marginBottom: 20,
     textAlign: 'center',
-  },
-  error: {
-    color: 'red',
   },
 });

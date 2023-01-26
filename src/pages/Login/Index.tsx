@@ -1,5 +1,7 @@
+import { ErrorMessage } from '@hookform/error-message';
+import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SvgUri } from 'react-native-svg';
@@ -9,6 +11,8 @@ import Button from '../../components/Button/Button';
 import Container from '../../components/Container/Container';
 import Input from '../../components/Input/Input';
 import Divider from '../../components/SpaceY/Divider';
+import useLogin from './hooks/useLogin';
+import userLoginSchema from './zodSchema';
 
 type Props = {
   navigation: any;
@@ -16,7 +20,18 @@ type Props = {
 
 export default function Index({ navigation }: Props) {
   const insets = useSafeAreaInsets();
-  const { control, handleSubmit } = useForm();
+  const { loginHandler } = useLogin();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(userLoginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
   return (
     <Container topSpace={false}>
       <View style={{ ...style.topCircle, paddingTop: insets.top }}>
@@ -39,25 +54,60 @@ export default function Index({ navigation }: Props) {
           <View>
             <Text style={style.label}>Correo electronico</Text>
             <Divider height={10} />
-            <Input control={control} name="email" />
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input onChange={onChange} onBlur={onBlur} value={value} />
+              )}
+              name="email"
+              rules={{
+                required: true,
+              }}
+            />
+            <Text style={globalStyle.errorText}>
+              <ErrorMessage errors={errors} name="email" />
+            </Text>
           </View>
           <Divider height={20} />
           <View>
             <Text style={style.label}>Contraseña</Text>
             <Divider height={10} />
-            <Input control={control} name="password" />
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input onChange={onChange} onBlur={onBlur} value={value} />
+              )}
+              name="password"
+              rules={{
+                required: true,
+              }}
+            />
+            <Text style={globalStyle.errorText}>
+              <ErrorMessage errors={errors} name="password" />
+            </Text>
           </View>
           <Divider height={8} />
           <Button inline handler={() => {}}>
-            ¿Olvidaste tu contraseña?
+            <Text style={globalStyle.buttonInlineText}>
+              ¿Olvidaste tu contraseña?
+            </Text>
           </Button>
         </View>
 
         <View style={{ marginTop: 'auto' }}>
-          <Button handler={() => {}}>Iniciar sesión</Button>
+          <Button handler={() => {}}>
+            <Text
+              onPress={handleSubmit((data: any) => loginHandler.mutate(data))}
+              style={globalStyle.buttonText}
+            >
+              Iniciar sesión
+            </Text>
+          </Button>
           <Divider height={8} />
           <Button inline handler={() => {}}>
-            ¿No tienes una cuenta?
+            <Text style={globalStyle.buttonInlineText}>
+              ¿No tienes una cuenta?
+            </Text>
           </Button>
         </View>
       </View>
