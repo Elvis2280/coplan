@@ -20,11 +20,14 @@ import Divider from '../../components/SpaceY/Divider';
 import useCreateAccount from './hooks/useCreateAccount';
 import { zodResolver } from '@hookform/resolvers/zod';
 import createAccountSchema from './zodSchema';
+import { useStoreUser } from '../../store/zustandStore';
 type Props = {
   navigation: any;
 };
 
 export default function Index({ navigation }: Props) {
+  const user = useStoreUser((state) => state.user);
+  console.log(user);
   const insets = useSafeAreaInsets();
   const { createUser } = useCreateAccount();
   const {

@@ -9,6 +9,7 @@ import {
 import Home from './src/pages/Home/Index';
 import Login from './src/pages/Login/Index';
 import Signup from './src/pages/Signup/Index';
+import CreateBudget from './src/pages/CreateBudget/Index';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -43,6 +44,7 @@ export default function App() {
                 <Stack.Screen name="Initial" component={Home} />
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Signup" component={Signup} />
+                <Stack.Screen name="Createbudget" component={CreateBudget} />
               </Stack.Group>
             </Stack.Navigator>
           </NavigationContainer>

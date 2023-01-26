@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import useCustomToast from '../../../hooks/useCustomToast';
+import { useStoreUser } from '../../../store/zustandStore';
 import axiosDbIntance from '../../../utils/axiosInstance';
 
 type userData = {
@@ -9,6 +10,7 @@ type userData = {
 };
 
 export default function useLogin() {
+  const setUser = useStoreUser((state) => state.setUser);
   const { toastSucess, toastError } = useCustomToast();
   const loginHandler = useMutation({
     mutationFn: ({ email, password }: userData) => {
@@ -26,6 +28,13 @@ export default function useLogin() {
     },
     onSuccess: ({ data }) => {
       console.log(data.data);
+      const userData = data.data;
+      setUser({
+        _id: userData._id,
+        nombre: userData.nombre,
+        apellido: userData.apellido,
+        email: userData.email,
+      });
       toastSucess(data.message);
     },
   });
