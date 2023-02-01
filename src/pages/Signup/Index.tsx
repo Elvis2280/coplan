@@ -26,8 +26,6 @@ type Props = {
 };
 
 export default function Index({ navigation }: Props) {
-  const user = useStoreUser((state) => state.user);
-  console.log(user);
   const insets = useSafeAreaInsets();
   const { createUser } = useCreateAccount();
   const {
@@ -163,7 +161,7 @@ export default function Index({ navigation }: Props) {
               )}
             </Button>
             <Divider height={8} />
-            <Button inline handler={() => {}}>
+            <Button inline handler={() => navigation.navigate('Createbudget')}>
               <Text style={globalStyle.buttonInlineText}>
                 ¿Ya tienes una cuenta?
               </Text>

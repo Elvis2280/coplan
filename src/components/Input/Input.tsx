@@ -4,13 +4,12 @@ import { StyleSheet, TextInput } from 'react-native';
 import colors from '../../../styles/colors';
 
 type Props = {
-  onChange: () => void;
-  value: string;
+  onChange: ((text: string) => void) | (() => void);
+  value: any;
   onBlur?: () => void;
 };
 
 export default function Input({ onBlur, onChange, value }: Props) {
-  console.log(value);
   return (
     <TextInput
       value={value}

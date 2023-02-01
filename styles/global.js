@@ -29,4 +29,13 @@ export const globalStyle = StyleSheet.create({
   errorText: {
     color: 'red',
   },
+  input: {
+    borderWidth: 1,
+    height: 44,
+    borderRadius: 4,
+    borderColor: colors.main600,
+    paddingHorizontal: 8,
+    fontSize: 16,
+    color: colors.main900,
+  },
 });
