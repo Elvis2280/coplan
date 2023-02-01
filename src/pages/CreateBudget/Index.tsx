@@ -8,7 +8,7 @@ import { Controller, useForm } from 'react-hook-form';
 import Input from '../../components/Input/Input';
 import userBudgetSchema from './zodBudgetSchema';
 import { ErrorMessage } from '@hookform/error-message';
-import { MaskedText, MaskedTextInput } from 'react-native-mask-text';
+import { MaskedTextInput } from 'react-native-mask-text';
 import usePorcentInputControl from '../../hooks/usePorcentInputControl';
 import Button from '../../components/Button/Button';
 import colors from '../../../styles/colors';
@@ -43,13 +43,12 @@ export default function Index({}: Props) {
   useEffect(() => {
     const moneySalario = Number(getValues().salario);
     generateMoneyOnFieldByPorcent(moneySalario);
-  }, [getValues().salario]);
+  }, [getValues().salario]); // check when money field change for calculate the money by porcent
 
   useEffect(() => {
     const moneySalario = Number(getValues().salario);
     generateMoneyOnFieldByPorcent(moneySalario);
-  }, [inputsPorcent]);
-
+  }, [inputsPorcent]); // check when any porcent field change for calculate the money by that porcent
   return (
     <Container>
       <ScrollView>

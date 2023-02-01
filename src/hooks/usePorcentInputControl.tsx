@@ -14,11 +14,11 @@ export default function usePorcentInputControl() {
     ahorro: 0,
   });
 
+  const [isFullPorcent, setIsFullPorcent] = useState(false);
+
   useEffect(() => {
     checkCompletePorcent();
-  }, [inputsPorcent.totalPorcent]);
-
-  const [isFullPorcent, setIsFullPorcent] = useState(false);
+  }, [inputsPorcent.totalPorcent]); // return true if the 100% of the salary is used
 
   const onBlurHandler = () => {
     const currentTotalPorcent =
@@ -26,7 +26,7 @@ export default function usePorcentInputControl() {
       inputsPorcent.entretenimientoPorcent +
       inputsPorcent.gastosPorcent;
     setInputsPorcent({ ...inputsPorcent, totalPorcent: currentTotalPorcent });
-  };
+  }; // when user leave the field set total porcent to the state
 
   const onChangeHandler = (
     val: string,
@@ -47,7 +47,7 @@ export default function usePorcentInputControl() {
       onBlurHandler();
       return '% ' + 0;
     }
-  };
+  }; // depend the field set that % to the object property
 
   const generateMoneyOnFieldByPorcent = (money: number) => {
     setInputBySalary({
@@ -55,7 +55,7 @@ export default function usePorcentInputControl() {
       entretenimiento: money * (inputsPorcent.entretenimientoPorcent / 100),
       ahorro: money * (inputsPorcent.ahorroPorcent / 100),
     });
-  };
+  }; // calculate the money by porcent and salary
 
   const checkCompletePorcent = () => {
     setIsFullPorcent(inputsPorcent.totalPorcent === 100);
