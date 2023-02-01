@@ -47,15 +47,15 @@ export default function Index({}: Props) {
 
   useEffect(() => {
     const moneySalario = Number(getValues().salario);
-    generateMoneyOnFieldByPorcent(moneySalario);
+    if (moneySalario > 0) generateMoneyOnFieldByPorcent(moneySalario);
   }, [inputsPorcent]); // check when any porcent field change for calculate the money by that porcent
   return (
     <Container>
-      <ScrollView>
-        <View style={globalStyle.container}>
-          <Text style={globalStyle.logo}>Coplan</Text>
-          <Divider height={24} />
-          <View style={{ flex: 1 }}>
+      <View style={{ ...globalStyle.container, flex: 1 }}>
+        <Text style={globalStyle.logo}>Coplan</Text>
+        <Divider height={24} />
+        <View style={{ flex: 1 }}>
+          <ScrollView>
             <View>
               <Text style={globalStyle.label}>Salario</Text>
               <Divider height={10} />
@@ -200,19 +200,19 @@ export default function Index({}: Props) {
                 {!isFullPorcent && 'Debe repartir el 100% de su salario'}
               </Text>
             </View>
-          </View>
-          <View>
-            <Button
-              handler={() => {
-                checkCompletePorcent();
-                console.log(getValues());
-              }}
-            >
-              <Text style={globalStyle.buttonText}>Siguiente</Text>
-            </Button>
-          </View>
+          </ScrollView>
         </View>
-      </ScrollView>
+        <View>
+          <Button
+            handler={() => {
+              checkCompletePorcent();
+              console.log(getValues());
+            }}
+          >
+            <Text style={globalStyle.buttonText}>Siguiente</Text>
+          </Button>
+        </View>
+      </View>
     </Container>
   );
 }
