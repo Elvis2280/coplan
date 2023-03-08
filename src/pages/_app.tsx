@@ -18,6 +18,11 @@ const colors = {
     800: '#115A5E',
     900: '#134B4E',
   },
+  dark: {
+    50: '#084445',
+    100: '#063637',
+    200: '#052D2E',
+  },
 };
 
 const theme = extendTheme({ colors });
