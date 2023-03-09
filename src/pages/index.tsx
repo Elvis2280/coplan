@@ -24,49 +24,102 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box position={'relative'} overflow="hidden" minH={'100vh'}>
-        <Container display={'flex'} flexDir="column" minH={'100vh'}>
-          <Flex flex={1} flexDir={'column'} pb={10} h="100%">
-            <Box
-              mt={4}
-              w={[28, 36]}
-              height={10}
-              position={'relative'}
-              mx="auto"
-            >
-              <Image src={'/logo.svg'} alt="Coplan Logo" fill />
-            </Box>
+      <Container mb="20" maxW={'6xl'}>
+        <Flex
+          display={['none', 'none', 'flex']}
+          alignItems={'center'}
+          justify={['center', 'center', 'space-between']}
+          pt={8}
+        >
+          <Image width={120} height={20} src={'/logo.svg'} alt="Coplan Logo" />
 
+          <Stack
+            direction={'row'}
+            spacing={4}
+            display={['none', 'none', 'inherit']}
+          >
+            <Button variant={'outline'}>Sign up</Button>
+            <Button variant={'ghost'}>Login</Button>
+          </Stack>
+        </Flex>
+      </Container>
+      <Box
+        position={'relative'}
+        overflow="hidden"
+        minH={['100vh', '100vh', 'auto']}
+        display="flex"
+        flexDir={['column', 'column', 'column', 'row-reverse']}
+      >
+        <Container
+          display={'flex'}
+          flexDir="column"
+          minH={['100vh', '100vh', 'auto']}
+          maxW={['xl']}
+        >
+          <Flex flex={1} flexDir={'column'} pt={6} pb={10} h="100%">
+            <Flex
+              display={['flex', 'flex', 'none']}
+              alignItems={'center'}
+              justify={['center', 'center', 'space-between']}
+              pt={8}
+            >
+              <Image
+                width={120}
+                height={20}
+                src={'/logo.svg'}
+                alt="Coplan Logo"
+              />
+
+              <Stack
+                direction={'row'}
+                spacing={4}
+                display={['none', 'none', 'inherit']}
+              >
+                <Button variant={'outline'}>Sign up</Button>
+                <Button variant={'ghost'}>Login</Button>
+              </Stack>
+            </Flex>
             <Flex
               flex={1}
               flexDirection="column"
-              justifyContent={'center'}
+              justifyContent={['center', 'center', 'flex-start']}
               rowGap={10}
             >
-              <Box w="full" h={[72, '96']} position={'relative'}>
+              <Box
+                display={['block', 'block', 'none']}
+                w="full"
+                h={[72, '96']}
+                position={'relative'}
+              >
                 <Image src={'/welcome.svg'} alt="Coplan welcome picture" fill />
               </Box>
 
-              <Box>
+              <Stack spacing={4} mt={[0, 0, 16]}>
                 <Text
                   as={'h1'}
-                  textAlign="center"
+                  textAlign={['center', 'center', 'left']}
                   fontWeight="bold"
                   color={'dark.200'}
-                  fontSize={['xl', '3xl']}
+                  fontSize={['xl', '3xl', '4xl']}
                 >
                   Manage Your Money, Together or Solo: The Ultimate Finance App
                 </Text>
-                <Text display={['none']}>
-                  Take control of your finances with our app. Whether you're
-                  managing your money solo, or with a partner or friends, our
-                  user-friendly platform makes tracking your finances easy. Set
-                  goals, track spending, and achieve financial success today.
+                <Text
+                  color={'dark.100'}
+                  fontSize={'xl'}
+                  display={['none', 'none', 'block']}
+                >
+                  Take control of your finances with our app. Whether
+                  you&apos;re managing your money solo, or with a partner or
+                  friends, our user-friendly platform makes tracking your
+                  finances easy. Set goals, track spending, and achieve
+                  financial success today.
                 </Text>
-              </Box>
+              </Stack>
             </Flex>
 
             <Stack
+              display={['inherit', 'inherit', 'none']}
               bg={['transparent', 'transparent', 'red']}
               mt={'auto'}
               direction={['column', 'row']}
@@ -84,6 +137,7 @@ export default function Home() {
 
         {/* Mobile decor */}
         <Box
+          display={['block', 'block', 'none']}
           rounded={'full'}
           w={48}
           h={48}
@@ -94,6 +148,7 @@ export default function Home() {
           zIndex={-1}
         ></Box>
         <Box
+          display={['block', 'block', 'none']}
           rounded={'full'}
           w={[32, 44]}
           h={[32, 44]}
@@ -103,6 +158,15 @@ export default function Home() {
           right={-10}
           zIndex={-1}
         ></Box>
+        {/* Tablet and desktop decor */}
+        <Box display={['none', 'none', 'block']} bottom={0}>
+          <Image
+            width={700}
+            height={500}
+            src="/welcomepicture-desk.svg"
+            alt="Welcome Coplan picture"
+          />
+        </Box>
       </Box>
     </>
   );
