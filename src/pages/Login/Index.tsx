@@ -12,6 +12,7 @@ import Container from '../../components/Container/Container';
 import Input from '../../components/Input/Input';
 import Logo from '../../components/Logo/Logo';
 import Divider from '../../components/Space/Divider';
+import { useStoreUser } from '../../store/zustandStore';
 import useLogin from './hooks/useLogin';
 import userLoginSchema from './zodSchema';
 
@@ -33,10 +34,13 @@ export default function Index({ navigation }: Props) {
       password: '',
     },
   });
+  const user = useStoreUser((state) => state.user);
 
   useEffect(() => {
-    navigation.navigate('Dashboard');
-  }, []);
+    if (user.nombre) {
+      navigation.navigate('Dashboard');
+    }
+  }, [user]);
   return (
     <Container topSpace={false}>
       <View style={{ ...style.topCircle, paddingTop: insets.top }}>
