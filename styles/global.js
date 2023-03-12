@@ -22,7 +22,7 @@ export const globalStyle = StyleSheet.create({
     textAlign: 'center',
   },
   buttonInlineText: {
-    color: colors.main200,
+    color: colors.main400,
     fontSize: 18,
     textAlign: 'center',
   },

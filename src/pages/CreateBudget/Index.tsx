@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Container from '../../components/Container/Container';
 import { globalStyle } from '../../../styles/global';
-import Divider from '../../components/SpaceY/Divider';
+import Divider from '../../components/Space/Divider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import Input from '../../components/Input/Input';
@@ -52,7 +52,9 @@ export default function Index({}: Props) {
   return (
     <Container>
       <View style={{ ...globalStyle.container, flex: 1 }}>
-        <Text style={globalStyle.logo}>Coplan</Text>
+        <Text className=" bg-slate-500" style={globalStyle.logo}>
+          Coplan
+        </Text>
         <Divider height={24} />
         <View style={{ flex: 1 }}>
           <ScrollView>

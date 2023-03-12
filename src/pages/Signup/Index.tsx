@@ -16,7 +16,7 @@ import { globalStyle } from '../../../styles/global';
 import Button from '../../components/Button/Button';
 import Container from '../../components/Container/Container';
 import Input from '../../components/Input/Input';
-import Divider from '../../components/SpaceY/Divider';
+import Divider from '../../components/Space/Divider';
 import useCreateAccount from './hooks/useCreateAccount';
 import { zodResolver } from '@hookform/resolvers/zod';
 import createAccountSchema from './zodSchema';

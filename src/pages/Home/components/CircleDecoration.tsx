@@ -11,7 +11,7 @@ export default function CircleDecoration({}: Props) {
         flex: 1,
       }}
       uri={
-        'https://res.cloudinary.com/elvisdev2280/image/upload/v1672787493/coplan/circlegradient_qiq1m1.svg'
+        'https://res.cloudinary.com/elvisdev2280/image/upload/v1678337276/coplan/Ellipse_2_obfpnd.svg'
       }
     />
   );

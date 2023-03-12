@@ -15,7 +15,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastProvider } from 'react-native-toast-notifications';
-
+import Dashboard from './src/pages/Dashboard/Index';
 const Stack = createNativeStackNavigator();
 export default function App() {
   const queryClient = new QueryClient();
@@ -45,6 +45,9 @@ export default function App() {
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Signup" component={Signup} />
                 <Stack.Screen name="Createbudget" component={CreateBudget} />
+              </Stack.Group>
+              <Stack.Group>
+                <Stack.Screen name="Dashboard" component={Dashboard} />
               </Stack.Group>
             </Stack.Navigator>
           </NavigationContainer>

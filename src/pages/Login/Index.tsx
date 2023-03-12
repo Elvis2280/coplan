@@ -1,6 +1,6 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -10,7 +10,8 @@ import { globalStyle } from '../../../styles/global';
 import Button from '../../components/Button/Button';
 import Container from '../../components/Container/Container';
 import Input from '../../components/Input/Input';
-import Divider from '../../components/SpaceY/Divider';
+import Logo from '../../components/Logo/Logo';
+import Divider from '../../components/Space/Divider';
 import useLogin from './hooks/useLogin';
 import userLoginSchema from './zodSchema';
 
@@ -32,10 +33,14 @@ export default function Index({ navigation }: Props) {
       password: '',
     },
   });
+
+  useEffect(() => {
+    navigation.navigate('Dashboard');
+  }, []);
   return (
     <Container topSpace={false}>
       <View style={{ ...style.topCircle, paddingTop: insets.top }}>
-        <Text style={{ ...globalStyle.logo, color: colors.white }}>Coplan</Text>
+        <Logo secondary />
         <View style={style.imageDecorationTop}>
           <SvgUri
             style={{
@@ -75,7 +80,12 @@ export default function Index({ navigation }: Props) {
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
-                <Input onChange={onChange} onBlur={onBlur} value={value} />
+                <Input
+                  passwordInput
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                />
               )}
               name="password"
               rules={{

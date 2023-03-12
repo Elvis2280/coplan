@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
+import { Text, View, StatusBar } from 'react-native';
 import { globalStyle } from '../../../styles/global';
 import { SvgUri } from 'react-native-svg';
 import Button from '../../components/Button/Button';
-import Divider from '../../components/SpaceY/Divider';
-import colors from '../../../styles/colors';
+import Divider from '../../components/Space/Divider';
 import CircleDecoration from './components/CircleDecoration';
 import Container from '../../components/Container/Container';
+import Logo from '../../components/Logo/Logo';
 
 type Props = {
   navigation: any;
@@ -16,34 +16,38 @@ export default function Index({ navigation }: Props) {
   return (
     <Container>
       <StatusBar barStyle={'dark-content'} />
-      <View style={{ ...globalStyle.container }}>
-        <View style={style.decorationTop}>
+      <View className=" flex-1 px-4 min-h-max">
+        <View className=" absolute -top-28 -left-28">
           <CircleDecoration />
         </View>
-        <View style={style.decorationBottom}>
+        <View className=" absolute -bottom-32 -right-32 rotate-180">
           <CircleDecoration />
         </View>
-        <Text style={globalStyle.logo}>Coplan</Text>
-        <View style={style.imageContainer}>
+        <Logo />
+        <View className=" flex-1 items-center justify-center">
           <SvgUri
             style={{
               flex: 1,
             }}
             uri={
-              'https://res.cloudinary.com/elvisdev2280/image/upload/v1672764528/coplan/loginpic_mkvhux.svg'
+              'https://res.cloudinary.com/elvisdev2280/image/upload/v1678337126/coplan/Login_pic_n2rtmt.svg'
             }
           />
         </View>
-        <View style={style.buttonsContainer}>
+        <View className=" justify-end mb-3">
           <Button handler={() => navigation.navigate('Login')}>
-            <Text style={globalStyle.buttonText}>Iniciar sesión</Text>
+            <Text className=" text-xl text-brand-50 text-center">
+              Iniciar sesión
+            </Text>
           </Button>
-          <Divider height={12} />
+          <Divider height={20} />
           <Button
             handler={() => navigation.navigate('Signup')}
             secondary={true}
           >
-            <Text style={globalStyle.buttonText}>Crear Cuenta</Text>
+            <Text className=" text-xl text-brand-50 text-center">
+              Crear Cuenta
+            </Text>
           </Button>
           <Divider height={12} />
         </View>
@@ -51,26 +55,3 @@ export default function Index({ navigation }: Props) {
     </Container>
   );
 }
-
-const style = StyleSheet.create({
-  imageContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonsContainer: {
-    justifyContent: 'flex-end',
-    marginBottom: 12,
-  },
-  decorationTop: {
-    position: 'absolute',
-    top: -125,
-    left: -125,
-  },
-  decorationBottom: {
-    position: 'absolute',
-    bottom: -140,
-    right: -140,
-    transform: [{ rotate: '180deg' }],
-  },
-});
